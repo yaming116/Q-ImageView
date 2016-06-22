@@ -6,10 +6,8 @@ import android.media.Image;
  * Created by Sun on 2016/6/22.
  */
 public final class QImageView2UrlBuilder {
-    private static final String TAG = "imageView2";
-    private static final String FILTER_QUALITY = "q";
-    private static final String FILTER_FORMAT = "format";
 
+    private static final String TAG = "imageView2";
 
     private final String host;
 
@@ -25,8 +23,8 @@ public final class QImageView2UrlBuilder {
         if (host == null || host.length() == 0) {
             throw new IllegalArgumentException("Host must not be blank.");
         }
-        if (!host.endsWith("/")) {
-            host += "/";
+        if (host.endsWith("/")) {
+            host = host.substring(0, host.length() - 1);
         }
         this.host = host;
     }
@@ -59,7 +57,7 @@ public final class QImageView2UrlBuilder {
      */
     public QImageView2UrlBuilder quality(int amount){
         if (amount < 0 || amount > 100) {
-            throw new IllegalArgumentException("Amount must be between 0 and 100, inclusive.");
+            throw new IllegalArgumentException("Quality must be between 0 and 100, inclusive.");
         }
         this.amount = amount;
         return this;
@@ -84,11 +82,18 @@ public final class QImageView2UrlBuilder {
     }
 
     public QImageView2UrlBuilder mode(int mode){
-        if (mode < 0 || mode > 100) {
+        if (mode < 0 || mode > 5) {
             throw new IllegalArgumentException("Mode must be between 0 and 5, inclusive.");
         }
         this.mode = mode;
         return this;
+    }
+
+    private void buildMode(StringBuilder builder){
+        builder.append("?")
+                .append(TAG)
+                .append("/")
+                .append(mode);
     }
 
     /**
@@ -96,23 +101,23 @@ public final class QImageView2UrlBuilder {
      * @return
      */
     public String build(){
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder(host);
 
-        builder.append("?")
-                .append(TAG)
-                .append("/")
-                .append(mode);
+
 
         if (hasResize){
+            buildMode(builder);
             if (resizeWidth != QImage.ORIGINAL_SIZE){
                 builder.append("/");
                 builder.append("w");
+                builder.append("/");
                 builder.append(resizeWidth);
             }
 
             if (resizeHeight != QImage.ORIGINAL_SIZE){
                 builder.append("/");
                 builder.append("h");
+                builder.append("/");
                 builder.append(resizeHeight);
             }
         }
