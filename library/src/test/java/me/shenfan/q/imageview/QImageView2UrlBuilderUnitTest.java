@@ -17,7 +17,7 @@ public class QImageView2UrlBuilderUnitTest {
     @Test
     public void basic(){
         final String host = "www.test.com";
-        final String url = QImage.create(host).build();
+        final String url = QImage.create(host).toUrl();
         assertEquals(host , url);
     }
 
@@ -26,7 +26,7 @@ public class QImageView2UrlBuilderUnitTest {
      public void testResize(){
         final String host = "www.test.com";
         final String result = "www.test.com?imageView2/0/w/100/h/100";
-        final String url = QImage.create(host).resize(100, 100).build();
+        final String url = QImage.create(host).resize(100, 100).toUrl();
 
         assertEquals(result, url);
     }
@@ -35,7 +35,7 @@ public class QImageView2UrlBuilderUnitTest {
     public void testResizeW(){
         final String host = "www.test.com";
         final String result = "www.test.com?imageView2/0/w/100";
-        final String url = QImage.create(host).resize(100, QImage.ORIGINAL_SIZE).build();
+        final String url = QImage.create(host).resize(100, QImage.ORIGINAL_SIZE).toUrl();
 
         assertEquals(result, url);
     }
@@ -44,7 +44,7 @@ public class QImageView2UrlBuilderUnitTest {
     public void testResizeH(){
         final String host = "www.test.com";
         final String result = "www.test.com?imageView2/0/h/100";
-        final String url = QImage.create(host).resize(QImage.ORIGINAL_SIZE, 100).build();
+        final String url = QImage.create(host).resize(QImage.ORIGINAL_SIZE, 100).toUrl();
 
         assertEquals(result, url);
     }
@@ -52,7 +52,7 @@ public class QImageView2UrlBuilderUnitTest {
     @Test(expected = IllegalArgumentException.class)
     public void testResizeException() {
         final String host = "www.test.com";
-        QImage.create(host).resize(-1, 100).build();
+        QImage.create(host).resize(-1, 100).toUrl();
 
     }
 
@@ -62,14 +62,14 @@ public class QImageView2UrlBuilderUnitTest {
         final String result = "www.test.com?imageView2/2/w/100/h/100/format/jpg";
         final String url = QImage.create(host).resize(100, 100)
                 .mode(2)
-                .format(QImage.ImageFormat.JPG).build();
+                .format(QImage.ImageFormat.JPG).toUrl();
         assertEquals(result, url);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testModeException(){
         final String host = "www.test.com";
-        QImage.create(host).mode(-1).build();
+        QImage.create(host).mode(-1).toUrl();
     }
 
     @Test
@@ -79,14 +79,14 @@ public class QImageView2UrlBuilderUnitTest {
         final String url = QImage.create(host).resize(100, 100)
                 .mode(2)
                 .quality(80)
-                .format(QImage.ImageFormat.JPG).build();
+                .format(QImage.ImageFormat.JPG).toUrl();
         assertEquals(result, url);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testQualityException(){
         final String host = "www.test.com";
-        QImage.create(host).quality(-1).build();
+        QImage.create(host).quality(-1).toUrl();
     }
 
     @Test
@@ -96,7 +96,7 @@ public class QImageView2UrlBuilderUnitTest {
         final String url = QImage.create(host).resize(100, 100)
                 .mode(2)
                 .overQuality(80)
-                .format(QImage.ImageFormat.JPG).build();
+                .format(QImage.ImageFormat.JPG).toUrl();
         assertEquals(result, url);
     }
 }
