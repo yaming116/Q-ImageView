@@ -55,16 +55,16 @@ public class QImage {
 
     public static String getImageInfo(String host){
         final String h = Utils.checkHost(host);
-        return host + "?imageInfo";
+        return h + "?imageInfo";
     }
 
     public static String getExif(String host){
         final String h = Utils.checkHost(host);
-        return host + "?exif";
+        return h + "?exif";
     }
 
     public static String getImageAve(String host){
         final String h = Utils.checkHost(host);
-        return host + "?imageAve";
+        return h + "?imageAve";
     }
 }
