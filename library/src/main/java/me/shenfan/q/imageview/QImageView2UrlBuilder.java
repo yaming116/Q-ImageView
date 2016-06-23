@@ -79,6 +79,8 @@ public final class QImageView2UrlBuilder {
     public QImageView2UrlBuilder format(QImage.ImageFormat format){
         if (format != null){
             this.format = format.value;
+        }else {
+            this.format = null;
         }
         return this;
     }
@@ -92,9 +94,7 @@ public final class QImageView2UrlBuilder {
     }
 
     private void buildMode(StringBuilder builder){
-        builder.append("?")
-                .append(TAG)
-                .append("/")
+        builder.append("/")
                 .append(mode);
     }
 
@@ -105,7 +105,8 @@ public final class QImageView2UrlBuilder {
     public String toUrl(){
         StringBuilder builder = new StringBuilder(host);
 
-
+        builder.append("?")
+                .append(TAG);
 
         if (hasResize){
             buildMode(builder);

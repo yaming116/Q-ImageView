@@ -18,7 +18,7 @@ public class QImageView2UrlBuilderUnitTest {
     public void basic(){
         final String host = "www.test.com";
         final String url = QImage.create(host).toUrl();
-        assertEquals(host , url);
+        assertEquals(host + "?imageView2" , url);
     }
 
 
