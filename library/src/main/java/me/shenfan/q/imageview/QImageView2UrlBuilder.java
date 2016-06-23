@@ -14,23 +14,25 @@ public final class QImageView2UrlBuilder {
     int resizeWidth;
     int resizeHeight;
     int mode;
-    int amount = QImage.ORIGINAL_SIZE;
+    int amount = QImage.ORIGINAL_QUALITY;
     String format;
     boolean hasResize;
     boolean hasOver;
 
     QImageView2UrlBuilder(String host){
-        if (host == null || host.length() == 0) {
-            throw new IllegalArgumentException("Host must not be blank.");
-        }
-        if (host.endsWith("/")) {
-            host = host.substring(0, host.length() - 1);
-        }
-        this.host = host;
+        this.host = Utils.checkHost(host);
     }
 
     public String getHost() {
         return host;
+    }
+
+    public QImageView2UrlBuilder resizeWidth(int width){
+        return resize(width, QImage.ORIGINAL_SIZE);
+    }
+
+    public QImageView2UrlBuilder resizeHeight(int height){
+        return resize(QImage.ORIGINAL_SIZE, height);
     }
 
     public QImageView2UrlBuilder resize(int width, int height){
@@ -100,7 +102,7 @@ public final class QImageView2UrlBuilder {
      *
      * @return
      */
-    public String build(){
+    public String toUrl(){
         StringBuilder builder = new StringBuilder(host);
 
 
@@ -129,7 +131,7 @@ public final class QImageView2UrlBuilder {
                     .append(format);
         }
 
-        if (amount != QImage.ORIGINAL_SIZE){
+        if (amount != QImage.ORIGINAL_QUALITY){
             builder.append("/")
                     .append("q");
 
