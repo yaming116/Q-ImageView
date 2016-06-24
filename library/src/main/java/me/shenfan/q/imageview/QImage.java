@@ -7,6 +7,8 @@ import android.widget.ImageView;
  */
 public class QImage {
 
+    public static boolean DEBUG = false;
+
     /** Original size for image width or height. **/
     public static final int ORIGINAL_SIZE = Integer.MIN_VALUE;
     /** Original size for image quality. **/
@@ -24,15 +26,19 @@ public class QImage {
     }
 
     public enum GravityType{
-        NorthWest("NorthWest"),North("North"),NorthEast("NorthEast")
-        ,West("West"),Center("Center"),East("East")
-        ,SouthWest("SouthWest"),South("South"),SouthEast("SouthEast");
+        NorthWest("northwest"),North("north"),NorthEast("northeast")
+        ,West("west"),Center("center"),East("east")
+        ,SouthWest("southwest"),South("south"),SouthEast("southeast");
 
         final String value;
 
         GravityType(String value){
             this.value = value;
         }
+    }
+
+    public static void setDebug(boolean debug){
+        DEBUG = debug;
     }
 
     /**
@@ -51,6 +57,24 @@ public class QImage {
      */
     public static QImageMogr2UrlBuilder createMogr(String host){
         return new QImageMogr2UrlBuilder(host);
+    }
+
+    /**
+     * Create a new instance for the specified host.
+     * @param host
+     * @return QImageWatermarkImageUrlBuilder
+     */
+    public static QImageWatermarkImageUrlBuilder createImageWater(String host){
+        return new QImageWatermarkImageUrlBuilder(host);
+    }
+
+    /**
+     * Create a new instance for the specified host.
+     * @param host
+     * @return QImageWatermarkTextUrlBuilder
+     */
+    public static QImageWatermarkTextUrlBuilder createTextWater(String host){
+        return new QImageWatermarkTextUrlBuilder(host);
     }
 
     public static String getImageInfo(String host){
