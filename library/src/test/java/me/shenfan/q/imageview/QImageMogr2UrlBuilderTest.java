@@ -33,7 +33,7 @@ public class QImageMogr2UrlBuilderTest {
                 .frameNumber(30)
                 .interlace().toUrl();
 
-        final String r = HOST + "?imageMogr2/auto-orient/thumbnail/100x100!/strip/gravity/Center" +
+        final String r = HOST + "?imageMogr2/auto-orient/thumbnail/100x100!/strip/gravity/center" +
                 "/scrop/100x/rotate/180/format/gif/quality/80/cgif/30/interlace/1";
         assertEquals(r, result);
     }
