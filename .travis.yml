@@ -26,3 +26,6 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+
+after_success:
+- mvn clean cobertura:cobertura coveralls:report
