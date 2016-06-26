@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 23
@@ -73,11 +75,9 @@ artifacts {
     archives sourcesJar
 }
 
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
 bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
+    user = System.getenv('bintray_user')
+    key = System.getenv("bintray.apikey")
 
     println "user: " + user
     println "key: " + key
