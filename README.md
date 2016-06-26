@@ -2,6 +2,10 @@ Q-ImageView
 ====
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/yaming116/UpdateApp/blob/master/LICENSE)
+[![Buildpass](https://api.travis-ci.org/yaming116/Q-ImageView.svg?branch=master)](https://travis-ci.org/yaming116/Q-ImageView)
+[![Download](https://api.bintray.com/packages/yaming116/maven/qcloud/images/download.svg) ](https://bintray.com/yaming116/maven/qcloud/_latestVersion)
+[![Download](https://api.bintray.com/packages/yaming116/maven/qiniu/images/download.svg) ](https://bintray.com/yaming116/maven/qiniu/_latestVersion)
+
 
 是时候解放手机的一些图片操作了，现在云服务器处理已经很强大了，下面对腾讯和七牛两家的图片处理做了一下封装。
 
